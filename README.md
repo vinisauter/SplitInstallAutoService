@@ -3,7 +3,7 @@
 A configuration/metadata generator for java.util.ServiceLoader-style service providers
 
 KSP annotation processors and other systems use
-[java.util.ServiceLoader][sl] to register implementations of well-known types using META-INF
+`java.util.ServiceLoader` to register implementations of well-known types using META-INF
 metadata. However, it is easy for a developer to forget to update or correctly specify the service
 descriptors. \
 SplitInstallAutoService generates this metadata for the developer, for any class annotated
