@@ -1,0 +1,71 @@
+plugins {
+    id 'com.google.devtools.ksp'
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.splitinstall.auto.service"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    // to use KSP generated Code
+    sourceSets.all {
+        it.java.srcDir("build/generated/ksp/${it.name}/kotlin/")
+        it.res.srcDirs("build/generated/ksp/${it.name}/resources/")
+    }
+    dynamicFeatures = [
+            ':app-modules:feature_on_demand',
+            ':app-modules:feature_install_time'
+    ]
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+//    api 'androidx.lifecycle:lifecycle-extensions-ktx:2.3.1'
+    api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    api 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+    api 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    api 'androidx.fragment:fragment-ktx:1.3.6'
+    api 'androidx.activity:activity-ktx:1.3.1'
+
+    api 'androidx.core:core-ktx:1.6.0'
+    api 'com.google.android.play:core-ktx:1.8.1'
+    api project(path: ':annotations:auto:android')
+    ksp project(path: ':annotations:auto:processor')
+
+    api project(path: ':app-libraries:bug-finder')
+    api project(path: ':app-libraries:injection')
+
+    implementation 'org.jetbrains.kotlin:kotlin-reflect:1.5.31'
+}

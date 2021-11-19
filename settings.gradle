@@ -1,0 +1,31 @@
+pluginManagement {
+    plugins {
+        id 'com.google.devtools.ksp' version '1.5.31-1.0.0'
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+    }
+}
+rootProject.name = "Split Install Auto Service"
+
+include ':annotations'
+include ':annotations:auto'
+include ':annotations:auto:android'
+include ':annotations:auto:annotations'
+include ':annotations:auto:processor'
+
+include ':app'
+
+include ':app-libraries'
+include ':app-libraries:bug-finder'
+include ':app-libraries:injection'
+
+include ':app-modules'
+include ':app-modules:feature_on_demand'
+include ':app-modules:feature_install_time'
