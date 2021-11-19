@@ -3,8 +3,8 @@
 A configuration/metadata generator for java.util.ServiceLoader-style service providers
 
 KSP annotation processors and other systems use
-`java.util.ServiceLoader` to register implementations of well-known types using META-INF
-metadata. However, it is easy for a developer to forget to update or correctly specify the service
+`java.util.ServiceLoader` to register implementations of well-known types using META-INF metadata.
+However, it is easy for a developer to forget to update or correctly specify the service
 descriptors. \
 SplitInstallAutoService generates this metadata for the developer, for any class annotated
 with `@ImplementationOf`, avoiding typos, providing resistance to errors from refactoring, etc.
@@ -12,6 +12,8 @@ with `@ImplementationOf`, avoiding typos, providing resistance to errors from re
 ## Example
 
 Say you have:
+
+Java:
 
 ```java
 package foo.bar;
@@ -26,6 +28,8 @@ final class TheImplementation implements TheInterface {
     // …
 }
 ```
+
+Kotlin:
 
 ```kotlin
 package foo.bar
